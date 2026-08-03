@@ -171,7 +171,7 @@ const CTASection = () => {
 
 
             <Link
-              href="/register"
+              href="/register?rescue=true"
               className="
               rounded-xl
               border

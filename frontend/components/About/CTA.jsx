@@ -191,7 +191,7 @@ Get Started
 
 <Link
 
-href="/register?role=rescue"
+href="/register?rescue=true"
 
 className="
 flex

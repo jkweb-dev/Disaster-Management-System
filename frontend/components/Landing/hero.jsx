@@ -178,7 +178,7 @@ const Hero = () => {
           >
 
             <Link
-              href="/register"
+              href="/register?victim=true"
               className="
               flex
               items-center
@@ -207,7 +207,7 @@ const Hero = () => {
 
 
             <Link
-              href="/register"
+              href="/register?rescue=true"
               className="
               rounded-xl
               border
