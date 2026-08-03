@@ -1,10 +1,14 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import Userrouter from "./routes/user.js";
+
 
 const app = express();
 
 // Middlewares
+
+
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
@@ -22,12 +26,15 @@ app.use(
 
 app.use(cookieParser());
 
-// Health Check Route
-app.get("/api/health", (req, res) => {
+app.get("/" , (req , res) => {
   res.status(200).json({
-    success: true,
-    message: "Server is running successfully.",
-  });
-});
+    message : "Server is running successfully"
+  })
+})
+
+app.use(
+"/auth",
+Userrouter
+)
 
 export default app;
