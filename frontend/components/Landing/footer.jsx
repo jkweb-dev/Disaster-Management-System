@@ -135,9 +135,7 @@ About
 Emergency Info
 </Link>
 
-<Link href="/contact">
-Contact
-</Link>
+
 
 
 </div>

@@ -18,10 +18,7 @@ const navLinks = [
     name: "Emergency Info",
     href: "/emergency-info",
   },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
+ 
 ];
 
 const Navbar = () => {
