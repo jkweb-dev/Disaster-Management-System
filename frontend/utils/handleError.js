@@ -51,7 +51,7 @@ const handleError = (
         case 403:
 
             toast.error(
-                "You are not allowed to perform this action"
+               message || "You are not allowed to perform this action"
             );
 
             break;
@@ -61,7 +61,7 @@ const handleError = (
         case 404:
 
             toast.error(
-                "Requested resource not found"
+               message || "Requested resource not found"
             );
 
             break;
@@ -83,7 +83,7 @@ const handleError = (
         case 500:
 
             toast.error(
-                "Server error. Please try again later"
+               message || "Server error. Please try again later"
             );
 
             break;
