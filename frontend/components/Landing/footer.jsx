@@ -116,6 +116,7 @@ Quick Links
 
 
 <div className="
+flex flex-col
 mt-5
 space-y-3
 text-sm
