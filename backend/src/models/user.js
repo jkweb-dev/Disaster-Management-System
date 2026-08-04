@@ -97,6 +97,14 @@ return this.role==="rescue"
 
 }
 
+} ,
+
+resetPasswordToken: {
+    type: String
+},
+
+resetPasswordExpires: {
+    type: Date
 }
 
 
