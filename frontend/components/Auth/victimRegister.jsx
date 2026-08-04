@@ -14,10 +14,13 @@ import {
 } from "lucide-react";
 
 import handleError from "@/utils/handleError";
+import useAuth from "@/hooks/useAuth";
 
 
 const VictimRegisterForm = () => {
 
+
+  const { login } = useAuth();
 
 const router = useRouter();
 
@@ -150,7 +153,10 @@ toast.success(
 );
 
 
-localStorage.setItem("token" , res.data.token)
+login(
+res.data.token,
+res.data.user
+);
 
 //router.push("/login");
 

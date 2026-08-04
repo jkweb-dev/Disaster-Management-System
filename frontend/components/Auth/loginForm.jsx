@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 
 import handleError from "@/utils/handleError";
+import useAuth from "@/hooks/useAuth";
 
 
 
 const LoginForm = ()=>{
 
+  const { login } = useAuth();
 
 const router = useRouter();
 
@@ -123,16 +125,9 @@ user
 
 
 // Store authentication data
-
-localStorage.setItem(
-"token",
-token
-);
-
-
-localStorage.setItem(
-"user",
-JSON.stringify(user)
+login(
+  token,
+  user
 );
 
 

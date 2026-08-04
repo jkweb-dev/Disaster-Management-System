@@ -117,7 +117,10 @@ user:{
 
 id:user._id,
 
-role:user.role
+role:user.role ,
+
+name : user.name ||
+                user.organizationName || "Admin Bai"
 
 }
 
