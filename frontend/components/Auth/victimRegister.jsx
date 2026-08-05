@@ -15,12 +15,13 @@ import {
 
 import handleError from "@/utils/handleError";
 import useAuth from "@/hooks/useAuth";
+import api from "@/lib/axios";
 
 
 const VictimRegisterForm = () => {
 
 
-  const { login } = useAuth();
+  const { checkAuth } = useAuth();
 
 const router = useRouter();
 
@@ -132,31 +133,22 @@ setLoading(true);
 
 
 
-const res = await axios.post(
-
-"http://localhost:5000/auth/register",
-
+const {data}=await api.post(
+"/auth/register",
 {
-
 ...formData,
-
-role:"victim"
-
+role : "victim"
 }
-
 );
 
-
+await checkAuth();
 
 toast.success(
 "Account created successfully"
 );
 
 
-login(
-res.data.token,
-res.data.user
-);
+
 
 //router.push("/login");
 

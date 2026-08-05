@@ -14,12 +14,13 @@ import {
 
 import handleError from "@/utils/handleError";
 import useAuth from "@/hooks/useAuth";
+import api from "@/lib/axios";
 
 
 
 const LoginForm = ()=>{
 
-  const { login } = useAuth();
+  const { checkAuth } = useAuth();
 
 const router = useRouter();
 
@@ -104,33 +105,18 @@ setLoading(true);
 
 
 
-const response = await axios.post(
-
-`${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-
+const {data}=await api.post(
+"/auth/login",
 formData
-
 );
 
-
-
-
-const {
-token,
-user
-}=response.data;
 
 
 
 
 
 // Store authentication data
-login(
-  token,
-  user
-);
-
-
+await checkAuth();
 
 
 
@@ -145,33 +131,7 @@ toast.success(
 // Role Based Redirect
 
 
-if(user.role==="victim"){
 
-router.push(
-"/victim/dashboard"
-);
-
-}
-
-
-
-else if(user.role==="rescue"){
-
-router.push(
-"/rescue/dashboard"
-);
-
-}
-
-
-
-else if(user.role==="admin"){
-
-router.push(
-"/admin/dashboard"
-);
-
-}
 
 
 

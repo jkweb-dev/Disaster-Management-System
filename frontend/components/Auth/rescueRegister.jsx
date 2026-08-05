@@ -19,12 +19,13 @@ import {
 
 import handleError from "@/utils/handleError";
 import useAuth from "@/hooks/useAuth";
+import api from "@/lib/axios";
 
 
 const RescueRegisterForm = () => {
 
 
-    const { login } = useAuth();
+    const { checkAuth } = useAuth();
 
 const router = useRouter();
 
@@ -157,22 +158,16 @@ try{
 setLoading(true);
 
 
-
-const res = await axios.post(
-
-"http://localhost:5000/auth/register",
-
+const {data}=await api.post(
+"/auth/register",
 {
-
 ...formData,
-
-role:"rescue"
-
+role : "rescue"
 }
-
 );
 
 
+await checkAuth()
 
 
 toast.success(
@@ -181,11 +176,6 @@ toast.success(
 
 );
 
-
-login(
-res.data.token,
-res.data.user
-);
 
 //router.push("/login");
 

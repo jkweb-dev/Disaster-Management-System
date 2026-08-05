@@ -11,6 +11,9 @@ import {
 import { useRouter } from "next/navigation";
 
 
+import api from "@/lib/axios";
+
+
 
 const AuthContext = createContext();
 
@@ -26,78 +29,50 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
 
-    const [token, setToken] = useState(null);
-
-
     const [loading, setLoading] = useState(true);
 
 
 
 
 
-    // Check existing authentication when app starts
+    // Check logged in user
 
-    useEffect(() => {
-
-
-        const storedToken =
-            localStorage.getItem("token");
+    const checkAuth = async () => {
 
 
-        const storedUser =
-            localStorage.getItem("user");
+        try {
 
 
+            const { data } = await api.get(
+                "/auth/me"
+            );
 
-        if (storedToken && storedUser) {
-
-
-            setToken(storedToken);
 
 
             setUser(
-                JSON.parse(storedUser)
+                data.user
             );
 
 
         }
 
 
-
-        setLoading(false);
-
+        catch(error){
 
 
-    }, []);
+            setUser(null);
 
 
+        }
 
 
+        finally{
 
 
-
-    // Login function
-
-    const login = (token, user) => {
+            setLoading(false);
 
 
-        localStorage.setItem(
-            "token",
-            token
-        );
-
-
-        localStorage.setItem(
-            "user",
-            JSON.stringify(user)
-        );
-
-
-
-        setToken(token);
-
-
-        setUser(user);
+        }
 
 
     };
@@ -107,31 +82,54 @@ export const AuthProvider = ({ children }) => {
 
 
 
-
-    // Logout function
-
-    const logout = () => {
+    useEffect(()=>{
 
 
-        localStorage.removeItem(
-            "token"
-        );
+        checkAuth();
 
 
-        localStorage.removeItem(
-            "user"
-        );
+    },[]);
 
 
 
-        setToken(null);
-
-
-        setUser(null);
 
 
 
-        router.push("/");
+
+    // Logout
+
+    const logout = async () => {
+
+
+        try{
+
+
+            await api.post(
+                "/auth/logout"
+            );
+
+
+        }
+
+        catch(error){
+
+
+            console.log(error);
+
+
+        }
+
+
+        finally{
+
+
+            setUser(null);
+
+
+            router.push("/");
+
+
+        }
 
 
     };
@@ -150,11 +148,11 @@ export const AuthProvider = ({ children }) => {
 
                 user,
 
-                token,
-
                 loading,
 
-                login,
+                setUser,
+
+                checkAuth,
 
                 logout
 
@@ -170,7 +168,6 @@ export const AuthProvider = ({ children }) => {
 
 
 };
-
 
 
 

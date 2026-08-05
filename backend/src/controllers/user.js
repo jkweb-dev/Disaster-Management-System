@@ -102,6 +102,20 @@ user.role
 );
 
 
+res.cookie(
+    "token",
+    token,
+    {
+        httpOnly:true,
+        secure:false,
+        sameSite:"lax",
+        maxAge:
+        7 * 24 * 60 * 60 * 1000,
+        path : "/"
+    }
+);
+
+
 
 
 
@@ -109,9 +123,6 @@ res.status(201).json({
 
 message:
 "Registration successful",
-
-token,
-
 
 user:{
 
@@ -256,6 +267,19 @@ export const login = async (req, res) => {
 
 
 
+        res.cookie(
+    "token",
+    token,
+    {
+        httpOnly:true,
+        secure:false,
+        sameSite:"lax",
+        maxAge:
+        7 * 24 * 60 * 60 * 1000,
+        path : "/"
+    }
+);
+
 
 
 
@@ -263,9 +287,6 @@ export const login = async (req, res) => {
 
             message:
             "Login successful",
-
-
-            token,
 
 
             user:{
@@ -516,6 +537,68 @@ export const resetPassword = async (req, res) => {
     }
 
     catch (error) {
+
+        res.status(500).json({
+
+            message: error.message
+
+        });
+
+    }
+
+};
+
+
+
+export const getMe = async (req, res) => {
+
+    try {
+
+
+        res.status(200).json({
+
+            user: req.user
+
+        });
+
+
+    }
+
+    catch(error){
+
+
+        res.status(500).json({
+
+            message:error.message
+
+        });
+
+
+    }
+
+};
+
+
+export const logout = async (req, res) => {
+
+    try {
+
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax"
+        });
+
+
+        res.status(200).json({
+
+            message: "Logout successful"
+
+        });
+
+
+    } catch(error) {
+
 
         res.status(500).json({
 
