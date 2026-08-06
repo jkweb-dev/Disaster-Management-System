@@ -37,7 +37,7 @@ export const getMyEmergencyReports = async()=>{
 
     const response = await api.get(
 
-        "/api/emergency/my-reports"
+        "/emergency/my-reports"
 
     );
 
