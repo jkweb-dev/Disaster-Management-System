@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
 import Userrouter from "./routes/user.js";
+import Emergencyrouter from "./routes/emergency-Report.js";
 
 
 const app = express();
@@ -11,7 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin:process.env.CLIENT_URL,
     credentials: true,
   })
 );
@@ -32,9 +34,8 @@ app.get("/" , (req , res) => {
   })
 })
 
-app.use(
-"/auth",
-Userrouter
-)
+app.use("/auth",Userrouter)
+
+app.use("/emergency",Emergencyrouter)
 
 export default app;
