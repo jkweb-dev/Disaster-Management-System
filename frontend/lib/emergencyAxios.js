@@ -58,7 +58,7 @@ export const getEmergencyReportById = async(id)=>{
 
     const response = await api.get(
 
-        `/api/emergency/${id}`
+        `/emergency/${id}`
 
     );
 

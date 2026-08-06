@@ -309,6 +309,7 @@ export const getEmergencyReportById = async(req,res)=>{
 
     try{
 
+        console.log("Hitted")
 
         const report =
         await EmergencyReport.findOne({

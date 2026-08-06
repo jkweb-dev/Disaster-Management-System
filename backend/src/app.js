@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 import Userrouter from "./routes/user.js";
 import Emergencyrouter from "./routes/emergency-Report.js";
@@ -27,6 +28,11 @@ app.use(
 );
 
 app.use(cookieParser());
+
+app.use(
+  "/uploads",
+  express.static(path.join(process.cwd(), "src/uploads"))
+);
 
 app.get("/" , (req , res) => {
   res.status(200).json({
