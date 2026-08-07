@@ -3,12 +3,15 @@
 
 import {
     Bell,
-    UserCircle
+    UserCircle,
+    Menu
 } from "lucide-react";
 
 
 
-const AdminTopbar = () => {
+const AdminTopbar = ({
+    setSidebarOpen
+}) => {
 
 
     return (
@@ -21,20 +24,65 @@ const AdminTopbar = () => {
             justify-between
             border-b
             bg-white
-            px-6
+            px-4
+            sm:px-6
             "
         >
 
 
-            <div>
+
+
+            {/* Left Section */}
+
+
+            <div
+                className="
+                flex
+                items-center
+                gap-3
+                "
+            >
+
+
+
+                {/* Mobile Menu Button */}
+
+
+                <button
+
+                    onClick={() =>
+                        setSidebarOpen(true)
+                    }
+
+                    className="
+                    rounded-xl
+                    p-2
+                    transition
+                    hover:bg-gray-100
+                    lg:hidden
+                    "
+
+                >
+
+                    <Menu size={24}/>
+
+                </button>
+
+
+
+
+
 
 
                 <h2
+
                     className="
-                    text-xl
+                    text-lg
                     font-bold
                     text-gray-800
+                    sm:text-xl
                     "
+
                 >
 
                     Admin Dashboard
@@ -42,60 +90,110 @@ const AdminTopbar = () => {
                 </h2>
 
 
+
             </div>
 
 
 
 
 
+
+
+
+
+            {/* Right Section */}
+
+
             <div
+
                 className="
                 flex
                 items-center
-                gap-5
+                gap-3
+                sm:gap-5
                 "
+
             >
 
 
+
+
+                {/* Notification */}
+
+
                 <button
+
                     className="
                     rounded-full
                     p-2
+                    transition
                     hover:bg-gray-100
                     "
+
                 >
 
-                    <Bell size={22}/>
+                    <Bell
+                        size={22}
+                    />
 
                 </button>
 
 
 
+
+
+
+
+                {/* Profile */}
+
+
                 <div
+
                     className="
                     flex
                     items-center
                     gap-2
                     "
+
                 >
 
+
                     <UserCircle
+
                         size={34}
-                        className="text-gray-500"
+
+                        className="
+                        text-gray-500
+                        "
+
                     />
 
 
-                    <span className="font-medium">
+
+                    <span
+
+                        className="
+                        hidden
+                        font-medium
+                        text-gray-700
+                        sm:block
+                        "
+
+                    >
 
                         Admin
 
                     </span>
 
 
+
                 </div>
 
 
+
             </div>
+
+
 
 
         </header>
@@ -103,6 +201,7 @@ const AdminTopbar = () => {
     );
 
 };
+
 
 
 export default AdminTopbar;

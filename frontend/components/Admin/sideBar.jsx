@@ -2,11 +2,10 @@
 
 
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 
-
 import {
+    X,
     LayoutDashboard,
     Users,
     ShieldCheck,
@@ -17,11 +16,13 @@ import {
 
 
 
-const AdminSidebar = () => {
+const AdminSidebar = ({
+    sidebarOpen,
+    setSidebarOpen
+}) => {
 
 
     const pathname = usePathname();
-
 
 
 
@@ -33,13 +34,11 @@ const AdminSidebar = () => {
             icon:LayoutDashboard
         },
 
-
         {
             name:"Rescue Management",
             path:"/admin/rescue-management",
             icon:ShieldCheck
         },
-
 
         {
             name:"Emergency Reports",
@@ -47,13 +46,11 @@ const AdminSidebar = () => {
             icon:AlertTriangle
         },
 
-
         {
             name:"Victims",
             path:"/admin/victims",
             icon:Users
         },
-
 
         {
             name:"Settings",
@@ -66,20 +63,74 @@ const AdminSidebar = () => {
 
 
 
-
     return (
 
         <aside
-            className="
-            hidden
+
+            className={`
+            
+            fixed
+            inset-y-0
+            left-0
+            z-50
+
+            flex
             w-80
+            flex-col
+
             border-r
             bg-white
             p-6
-            lg:flex
-            lg:flex-col
-            "
+
+            transition-transform
+            duration-300
+            ease-in-out
+
+
+            ${sidebarOpen 
+                ? "translate-x-0" 
+                : "-translate-x-full"
+            }
+
+
+            lg:static
+            lg:translate-x-0
+
+            `}
+
         >
+
+
+
+            {/* Mobile Close Button */}
+
+            <div
+                className="
+                mb-6
+                flex
+                justify-end
+                lg:hidden
+                "
+            >
+
+                <button
+
+                    onClick={() => setSidebarOpen(false)}
+
+                    className="
+                    rounded-xl
+                    p-2
+                    hover:bg-gray-100
+                    "
+
+                >
+
+                    <X size={24}/>
+
+                </button>
+
+
+            </div>
 
 
 
@@ -141,6 +192,7 @@ const AdminSidebar = () => {
                 mt-10
                 flex-1
                 space-y-4
+                overflow-y-auto
                 "
             >
 
@@ -157,8 +209,6 @@ const AdminSidebar = () => {
 
 
 
-
-
                         return (
 
                             <Link
@@ -167,16 +217,26 @@ const AdminSidebar = () => {
 
                                 href={item.path}
 
+                                onClick={() =>
+                                    setSidebarOpen(false)
+                                }
+
+
                                 className={`
+                                
                                 group
                                 flex
                                 items-center
                                 justify-between
+
                                 rounded-2xl
+
                                 px-5
                                 py-4
+
                                 transition-all
                                 duration-300
+
 
                                 ${
                                     active
@@ -188,6 +248,7 @@ const AdminSidebar = () => {
                                     :
 
                                     "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+
                                 }
 
                                 `}
@@ -206,9 +267,12 @@ const AdminSidebar = () => {
 
 
                                     <div
+
                                         className={`
+                                        
                                         rounded-xl
                                         p-2
+
 
                                         ${
                                             active
@@ -220,14 +284,15 @@ const AdminSidebar = () => {
                                             :
 
                                             "bg-gray-100 group-hover:bg-blue-100"
+
                                         }
 
                                         `}
+
                                     >
 
-                                        <Icon
-                                            size={22}
-                                        />
+                                        <Icon size={22}/>
+
 
                                     </div>
 
@@ -246,6 +311,7 @@ const AdminSidebar = () => {
                                     </span>
 
 
+
                                 </div>
 
 
@@ -254,17 +320,11 @@ const AdminSidebar = () => {
 
 
                                 {
-
                                     active &&
 
-                                    (
-
-                                        <ChevronRight
-                                            size={20}
-                                        />
-
-                                    )
-
+                                    <ChevronRight
+                                        size={20}
+                                    />
                                 }
 
 
@@ -278,6 +338,7 @@ const AdminSidebar = () => {
                 }
 
 
+
             </nav>
 
 
@@ -286,12 +347,12 @@ const AdminSidebar = () => {
 
 
 
-            {/* Bottom */}
+            {/* System Status */}
 
 
             <div
                 className="
-                mt-auto
+                mt-6
                 rounded-2xl
                 bg-gray-50
                 p-5
@@ -309,6 +370,7 @@ const AdminSidebar = () => {
                     System Status
 
                 </p>
+
 
 
                 <div
@@ -329,6 +391,7 @@ const AdminSidebar = () => {
                         "
                     />
 
+
                     <span
                         className="
                         text-sm
@@ -345,7 +408,6 @@ const AdminSidebar = () => {
 
 
             </div>
-
 
 
 
