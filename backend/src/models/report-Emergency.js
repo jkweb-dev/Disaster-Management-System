@@ -293,8 +293,24 @@ const emergencyReportSchema = new mongoose.Schema(
         default:null
 
 
-    }
+    },
 
+    assignedAt: {
+
+    type: Date,
+
+    default: null
+
+},
+
+
+completedAt: {
+
+    type: Date,
+
+    default: null
+
+}
 
 
 },

@@ -5,6 +5,7 @@ import path from "path";
 
 import Userrouter from "./routes/user.js";
 import Emergencyrouter from "./routes/emergency-Report.js";
+import Adminrouter from "./routes/Admin.js";
 
 
 const app = express();
@@ -34,14 +35,11 @@ app.use(
   express.static(path.join(process.cwd(), "src/uploads"))
 );
 
-app.get("/" , (req , res) => {
-  res.status(200).json({
-    message : "Server is running successfully"
-  })
-})
 
 app.use("/auth",Userrouter)
 
 app.use("/emergency",Emergencyrouter)
+
+app.use("/admin" , Adminrouter)
 
 export default app;
