@@ -6,6 +6,7 @@ import path from "path";
 import Userrouter from "./routes/user.js";
 import Emergencyrouter from "./routes/emergency-Report.js";
 import Adminrouter from "./routes/Admin.js";
+import AdminEmergencyReportrouter from "./routes/AdminEmergencyReport.js";
 
 
 const app = express();
@@ -41,5 +42,7 @@ app.use("/auth",Userrouter)
 app.use("/emergency",Emergencyrouter)
 
 app.use("/admin" , Adminrouter)
+
+app.use("/admin/emergency-reports" , AdminEmergencyReportrouter)
 
 export default app;
