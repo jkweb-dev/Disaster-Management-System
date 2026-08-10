@@ -48,7 +48,7 @@ const AdminSidebar = ({
 
         {
             name:"Victims",
-            path:"/admin/victims",
+            path:"/admin/victim",
             icon:Users
         },
 

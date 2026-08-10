@@ -19,13 +19,14 @@ router.get(
 );
 
 
+
+
+
 router.get(
     "/rescue-teams",
     
     getApprovedRescueTeams
-);
-
-
+)
 /*
 |--------------------------------------------------------------------------
 | GET SINGLE EMERGENCY REPORT
@@ -36,6 +37,8 @@ router.get(
     "/:id",
     getEmergencyReportById
 );
+
+
 
 
 

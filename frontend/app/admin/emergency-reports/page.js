@@ -20,8 +20,6 @@ import EmergencyReportDetails from "@/components/AdminEmergencyReport/ReportDeta
 import LoadingSkeleton from "@/components/AdminEmergencyReport/loading";
 
 
-// Use your existing handleError function here.
-// Change this import path if your utility is located somewhere else.
 import handleError from "@/utils/handleError";
 
 
@@ -275,6 +273,10 @@ const [assigningRescue, setAssigningRescue] =
     }
 
 };
+
+
+
+
 
 const handleAssignRescue = async () => {
 
@@ -899,9 +901,6 @@ const handleAssignRescue = async () => {
 
 
 
-            {/* ----------------------------------------- */}
-            {/* Details Modal */}
-            {/* ----------------------------------------- */}
 
             {
                 detailsLoading && (
@@ -936,7 +935,7 @@ const handleAssignRescue = async () => {
     }
 
     rescueTeamsLoading={
-        rescueTeamsLoading
+        detailsLoading
     }
 
     assigningRescue={

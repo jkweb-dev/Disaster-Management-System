@@ -21,11 +21,13 @@ const EmergencyReportDetails = ({
 
     // Rescue assignment
     rescueTeams = [],
-    selectedRescue,
+    selectedRescue,                                                                     
     onSelectRescue,
     onAssignRescue,
     rescueTeamsLoading = false,
     assigningRescue = false
+
+
 }) => {
 
 
