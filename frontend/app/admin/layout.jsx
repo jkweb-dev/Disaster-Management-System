@@ -11,7 +11,7 @@ const AdminLayout = ({ children }) => {
 
     return (
 
-        <div className="flex min-h-screen bg-gray-50">
+        <div className="flex h-screen bg-gray-50">
 
             <AdminSidebar
                 sidebarOpen={sidebarOpen}
@@ -24,7 +24,7 @@ const AdminLayout = ({ children }) => {
                     setSidebarOpen={setSidebarOpen}
                 />
 
-                <main className="flex-1 p-6">
+                <main className="flex-1 p-6  overflow-y-auto">
 
                     {children}
 
