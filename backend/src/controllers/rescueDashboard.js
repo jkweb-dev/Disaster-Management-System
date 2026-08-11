@@ -6,7 +6,7 @@ const getRescueDashboard = async (req, res) => {
 
     try {
 
-        const rescueId = req.user.id;
+        const rescueId = req.user._id;
 
 
 

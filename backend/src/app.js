@@ -9,6 +9,7 @@ import Adminrouter from "./routes/Admin.js";
 import AdminEmergencyReportrouter from "./routes/AdminEmergencyReport.js";
 import AdminVictimrouter from "./routes/AdminVictim.js";
 import RescueDashboardrouter from "./routes/rescueDashboard.js";
+import RescueEmergencyrouter from "./routes/rescueEmergency.js";
 
 
 const app = express();
@@ -50,5 +51,7 @@ app.use("/admin/emergency-reports" , AdminEmergencyReportrouter)
 app.use("/admin/victims",  AdminVictimrouter);
 
 app.use("/rescue", RescueDashboardrouter);
+
+app.use( "/rescue/emergencies", RescueEmergencyrouter);
 
 export default app;
