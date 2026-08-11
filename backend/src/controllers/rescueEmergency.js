@@ -105,7 +105,7 @@ export const getRescueEmergencyById = async (
 
 
         const rescueId =
-            req.user.id;
+            req.user._id;
 
 
 
@@ -260,7 +260,7 @@ export const updateRescueEmergencyStatus =
 
 
             const rescueId =
-                req.user.id;
+                req.user._id;
 
 
 
