@@ -105,7 +105,7 @@ const RescueSidebar = ({
             ease-out
 
             lg:static
-            lg:z-auto
+            
             lg:w-[270px]
             lg:shrink-0
             lg:translate-x-0

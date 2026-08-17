@@ -6,6 +6,8 @@ import {
     UserRound
 } from "lucide-react";
 
+import NotificationBell from "@/components/Notifiy";
+
 
 const RescueTopbar = ({
     setSidebarOpen
@@ -15,9 +17,10 @@ const RescueTopbar = ({
 
         <header
             className="
-            z-30
+            
             flex
             h-16
+            z-60
             shrink-0
             items-center
             border-b
@@ -42,7 +45,8 @@ const RescueTopbar = ({
                 "
             >
 
-                {/* ================================================= */}
+
+              <NotificationBell/>  {/* ================================================= */}
                 {/* LEFT SIDE */}
                 {/* ================================================= */}
 

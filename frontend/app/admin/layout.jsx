@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import ProtectedRoute from "@/components/Auth/protetected";
 import AdminSidebar from "@/components/Admin/sideBar";
 import AdminTopbar from "@/components/Admin/topBar";
 
@@ -10,6 +11,10 @@ const AdminLayout = ({ children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
+            <ProtectedRoute   allowedRoles={[
+                "admin"
+            ]}
+>
 
         <div className="flex h-screen bg-gray-50">
 
@@ -51,7 +56,10 @@ const AdminLayout = ({ children }) => {
 
         </div>
 
+        </ProtectedRoute>
+
     );
+
 
 };
 

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+
+
 import ProtectedRoute from "@/components/Auth/protetected";
 
 import RescueSidebar from "@/components/Rescue/sidebar";
@@ -96,7 +98,7 @@ const RescueLayout = ({
                 min-w-0
                 flex-1
                 flex-col
-                overflow-hidden
+                
                 "
             >
 

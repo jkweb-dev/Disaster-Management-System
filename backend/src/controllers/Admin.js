@@ -1,5 +1,6 @@
 import User from "../models/user.js";
 import EmergencyReport from "../models/report-Emergency.js";
+import createNotification from "../utils/notification.js";
 
 // Dashboard statistics
 
@@ -156,6 +157,33 @@ export const approveRescue = async (req,res)=>{
 
         await rescue.save();
 
+       try {
+
+            await createNotification({
+
+                recipient: rescue._id,
+
+                type: "RESCUE_APPROVED",
+
+                title: "Rescue Team Approved",
+
+                message:
+                    "Your rescue team registration has been approved by the administrator.",
+
+                relatedId: rescue._id,
+
+                relatedType: "User"
+
+            });
+
+        }
+
+        catch (notificationError) {
+
+            console.error(
+                "Approval notification failed:",
+                notificationError
+            )}
 
 
 
@@ -220,7 +248,33 @@ export const rejectRescue = async(req,res)=>{
 
 
         await rescue.save();
+try {
 
+    await createNotification({
+
+        recipient: rescue._id,
+
+        type: "RESCUE_REJECTED",
+
+        title: "Rescue Team Rejected",
+
+        message:
+            "Your rescue team registration has been rejected by the administrator.",
+
+        relatedId: rescue._id,
+
+        relatedType: "User"
+
+    });
+
+}
+
+catch (notificationError) {
+
+    console.error(
+        "Rejection notification failed:",
+        notificationError
+    )}
 
 
 

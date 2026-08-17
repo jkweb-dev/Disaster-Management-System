@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 
+import createNotification from "../utils/notification.js";
 
 import generateToken from "../utils/generateToken.js";
 
@@ -92,6 +93,64 @@ data.emergencyCategories.split(",")
 
 });
 
+
+const admin = await User.findOne({
+    role: "admin"
+});
+
+
+try {
+   
+    if (admin) {
+
+    if (user.role === "victim") {
+
+        await createNotification({
+
+            recipient: admin._id,
+
+            type: "VICTIM_REGISTERED",
+
+            title: "New Victim Registered",
+
+            message:
+                `${user.name} has registered as a victim.`,
+
+            relatedId: user._id,
+
+            relatedType: "User"
+
+        });
+
+    }
+
+
+
+    if (user.role === "rescue") {
+
+        await createNotification({
+
+            recipient: admin._id,
+
+            type: "RESCUE_REGISTERED",
+
+            title: "New Rescue Team Registration",
+
+            message:
+                `${user.organizationName} has registered as a rescue team and requires review.`,
+
+            relatedId: user._id,
+
+            relatedType: "User"
+
+        });
+
+    }
+
+}
+} catch (error) {
+    console.log(error)
+}
 
 
 

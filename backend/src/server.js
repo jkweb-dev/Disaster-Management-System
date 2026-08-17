@@ -1,5 +1,8 @@
 import "dotenv/config";
 
+import http from "http";
+import { initializeSocket } from "./socket/socket.js";
+
 import app from "./app.js";
 
 
@@ -11,9 +14,18 @@ const startServer = async () => {
   try {
     await connectDB();
 
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
-    });
+
+const server = http.createServer(app);
+
+initializeSocket(server);
+
+server.listen(PORT, () => {
+
+    console.log(
+        `Server running on port ${PORT}`
+    );
+});
+
   } catch (error) {
     console.error("❌ Failed to start server:", error.message);
     process.exit(1);
